@@ -1,14 +1,15 @@
-﻿using System.Linq.Expressions;
+﻿using Domain.Models;
+using System.Linq.Expressions;
 
 namespace Infrastructure
 {
-    public interface IRepositoryBase<T> where T : class
+    public interface IRepositoryBase<TEntity> where TEntity : class
     {
-        void Add(T entity);
-        void Update(T entity);
-        void Delete(T entity);
-        T GetById(int Id);
-        IEnumerable<T> GetAll();
+        void Add(TEntity entity);
+        Task Update(TEntity entity);
+        Task Delete(TEntity entity);
+        Task<TEntity> GetById(int id);
+        Task<IEnumerable<TEntity>> GetAll();
 
     }
 }

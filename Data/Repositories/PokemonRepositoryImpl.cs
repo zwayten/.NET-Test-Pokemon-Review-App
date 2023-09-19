@@ -37,10 +37,6 @@ namespace Data.Repositories
             return await _dbContext.Pokemons.FindAsync(id);
         }
 
-        public async Task<Pokemon> GetById(string Id)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task Update(Pokemon entity)
         {
