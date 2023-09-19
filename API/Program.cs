@@ -37,6 +37,8 @@ builder.Services.AddScoped<IOwnerService, OwnerServiceImpl>();
 builder.Services.AddScoped<ICountryRepository, CountryRepositoryImpl>();
 builder.Services.AddScoped<ICountryService, CountryServiceImpl>();
 
+builder.Services.AddScoped<IReviewerRepository, ReviewerRepositoryImpl>();
+builder.Services.AddScoped<IReviewerService, ReviewerServiceImpl>();
 
 
 

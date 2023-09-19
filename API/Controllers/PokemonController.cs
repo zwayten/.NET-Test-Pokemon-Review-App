@@ -2,6 +2,7 @@
 using Domain.Models;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -30,6 +31,26 @@ namespace API.Controllers
             }
         }
 
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetOneById(int id)
+        {
+            try
+            {
+                var pokemon = await _pokemonService.GetPokemonById(id);
+                if(pokemon == null)
+                {
+                    return NotFound();
+                }
+                return Ok(new { response = pokemon });
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions and return an appropriate error response
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while fetching Pokémon data.");
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddPokemon(Pokemon pokemon)
         {
@@ -42,6 +63,29 @@ namespace API.Controllers
             {
                 // Handle exceptions and return an appropriate error response
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while adding a Pokémon.");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePokemon(int id)
+        {
+            try
+            {
+                var pokemon = await _pokemonService.GetPokemonById(id);
+
+                if (pokemon == null)
+                {
+                    return NotFound(); // Resource not found
+                }
+                Console.WriteLine($"the pokemon to delete is {pokemon.Id}");
+              await  _pokemonService.DeletePokemon(pokemon);
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions and return an appropriate error response
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while deleting a Pokémon.");
             }
         }
     }

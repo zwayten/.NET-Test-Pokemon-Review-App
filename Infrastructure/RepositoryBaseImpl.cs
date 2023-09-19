@@ -14,16 +14,17 @@ namespace Infrastructure
         }
         
 
-        public virtual void Add(TEntity entity)
+        public virtual TEntity Add(TEntity entity)
         {
             _context.Set<TEntity>().Add(entity);
              _context.SaveChanges();
+            return entity;
         }
 
-        public async Task Delete(TEntity entity)
+        public void Delete(TEntity entity)
         {
             _context.Set<TEntity>().Remove(entity);
-            await _context.SaveChangesAsync();
+             _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<TEntity>> GetAll()
