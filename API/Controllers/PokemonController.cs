@@ -21,7 +21,7 @@ namespace API.Controllers
             try
             {
                 var pokemons = await _pokemonService.GetAllPokemon();
-                return Ok(pokemons); 
+                return Ok(new {response = pokemons}); 
             }
             catch (Exception ex)
             {
@@ -31,18 +31,18 @@ namespace API.Controllers
         }
 
         [HttpPost]
-public async Task<IActionResult> AddPokemon(Pokemon pokemon)
-{
-    try
-    {
-         await _pokemonService.AddPokemon(pokemon);
-        return Ok();
-    }
-    catch (Exception ex)
-    {
-        // Handle exceptions and return an appropriate error response
-        return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while adding a Pokémon.");
-    }
-}
+        public async Task<IActionResult> AddPokemon(Pokemon pokemon)
+        {
+            try
+            {
+                 await _pokemonService.AddPokemon(pokemon);
+                return Ok(new {response = pokemon});
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions and return an appropriate error response
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while adding a Pokémon.");
+            }
+        }
     }
 }
