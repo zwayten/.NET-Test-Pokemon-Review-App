@@ -21,7 +21,7 @@ namespace API.Controllers
         {
             try
             {
-                var owners = await _ownerService.GetAll();
+                var owners = await _ownerService.GetAllOwner();
                 return Ok(new {response = owners});
             }
             catch (Exception ex)
@@ -36,7 +36,7 @@ namespace API.Controllers
         {
             try
             {
-                var o = _ownerService.Add(owner);
+                var o = _ownerService.AddOwner(owner);
                 return Ok(o);
             }
             catch (Exception ex)

@@ -5,11 +5,11 @@
     {
         public int Id { get; set; }
         public string? Name { get; set; }
-        public virtual ICollection<Owner>? Owners { get; set; }
+        //public virtual ICollection<Owner>? Owners { get; set; }
 
         public Country()
         {
-            this.Owners = new List<Owner>();
+            //this.Owners = new List<Owner>();
         }
         
     }
