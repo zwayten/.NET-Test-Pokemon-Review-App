@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
-    public interface IOwnerService: IServiceBase<Owner>
+    public interface IOwnerService/*: IServiceBase<Owner>*/
     {
+        Owner AddOwner(Owner entity);
+        Task<IEnumerable<Owner>> GetAllOwner();
+
     }
 }

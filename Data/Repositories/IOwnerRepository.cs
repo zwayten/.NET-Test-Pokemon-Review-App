@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories
 {
-    public interface IOwnerRepository : IRepositoryBase<Owner>
+    public interface IOwnerRepository /*: IRepositoryBase<Owner>*/
     {
+        Owner Add(Owner entity);
+        Task<IEnumerable<Owner>> GetAll();
+
     }
 }

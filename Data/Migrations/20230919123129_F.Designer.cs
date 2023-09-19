@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(PokemonDbContext))]
-    [Migration("20230919095508_F")]
+    [Migration("20230919123129_F")]
     partial class F
     {
         /// <inheritdoc />
@@ -65,7 +65,7 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CountryId")
+                    b.Property<int?>("CountryId")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
@@ -184,10 +184,8 @@ namespace Data.Migrations
             modelBuilder.Entity("Domain.Models.Owner", b =>
                 {
                     b.HasOne("Domain.Models.Country", "Country")
-                        .WithMany("Owners")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("CountryId");
 
                     b.Navigation("Country");
                 });
@@ -252,11 +250,6 @@ namespace Data.Migrations
             modelBuilder.Entity("Domain.Models.Category", b =>
                 {
                     b.Navigation("PokemonCategories");
-                });
-
-            modelBuilder.Entity("Domain.Models.Country", b =>
-                {
-                    b.Navigation("Owners");
                 });
 
             modelBuilder.Entity("Domain.Models.Owner", b =>

@@ -19,7 +19,7 @@ namespace API.Controllers
         {
             try
             {
-                var countries = await _countryService.GetAll();
+                var countries = await _countryService.GetAllCountry();
                 return Ok(countries);
             }catch (Exception ex) {
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while fetching countries data.");
@@ -32,7 +32,7 @@ namespace API.Controllers
             try
             {
                 //await Console.Out.WriteLineAsync($"Adding a country {country.Name}");
-                 var c = _countryService.Add(country);
+                 var c = _countryService.AddCountry(country);
                 return Ok(c);
             } catch (Exception ex)
             {

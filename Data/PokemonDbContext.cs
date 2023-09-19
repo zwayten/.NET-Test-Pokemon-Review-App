@@ -27,7 +27,8 @@ namespace Data
         {
             modelBuilder.Entity<Owner>()
         .HasOne(o => o.Country)
-        .WithMany(c => c.Owners);
+        .WithMany()
+        .HasForeignKey(o => o.CountryId);
 
             //PokemonCategories Table <<Join>>
             modelBuilder.Entity<PokemonCategory>().HasKey(pc => new { pc.PokemonId, pc.CategoryId });
